@@ -26,12 +26,9 @@
 #define MAX 101
 using namespace std;
 
+int BFS(int** maps);
+
 int n = 0, m = 0;
-
-int BFS(int** maps) {
-	queue<pair<int, int> > q;
-
-}
 
 int main() {
 	/*
@@ -52,6 +49,8 @@ int main() {
 		Construct a map.
 	*/
 	fscanf(inputFile, "%d %d", &n, &m);
+	if (n >= MAX || m >= MAX)
+		exit(0);
 
 	int** maps = (int**)malloc(sizeof(int*) * n);
 	for (int i = 0; i < n; i++) {
@@ -78,4 +77,76 @@ int main() {
 	printf("Game Map Shortest Way : %d\n", BFS(maps));
 
 	return 0;
+}
+
+int BFS(int** maps) {
+	int row = 0, col = 0;	// initial location.
+
+	int locationRow[4] = { 0, 0, 1, -1 }; // E W S N of Row.
+	int locationCol[4] = { 1, -1, 0, 0 }; // E W S N of Col.
+
+
+	/*
+		Step 2 : Declare dist for storing the distance from start location(0,0) to that location.
+	*/
+	int** dist = (int**)malloc(sizeof(int*) * n);
+	for (int i = 0; i < n; i++) {
+		dist[i] = (int*)malloc(sizeof(int) * m);
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			dist[i][j] = 0;
+		}
+	}
+
+	/*
+		Step 3 : Use Queue structure for implement BFS.
+	*/
+	queue<pair<int, int> > q;
+	q.push(make_pair(row, col));
+	maps[row][col] = -1;	// Mark the visited location.
+
+	/*
+		Step 4 : Update the dist array through enqueue(q.push) and dequeue(q.pop).
+	*/
+	while (!q.empty()) {
+		row = q.front().first;
+		col = q.front().second;
+
+		q.pop();	// dequeue.
+
+		/*
+			Check 4-way location(= EWSN) is valid.
+		*/
+		for (int i = 0; i < 4; i++) {
+			int newRow = row + locationRow[i];
+			int newCol = col + locationCol[i];
+
+			/*
+				Step 5 : Determine where to go through enqueue.
+				check that location is in the map.
+			*/
+			if (newCol >= 0 && newCol < m && newRow >= 0 && newRow < n) {
+				/*
+					check there is a road.(-> not blocked road = 0) & not visited (= Not -1)
+				*/
+				if (maps[newRow][newCol] == 1) {
+					q.push(make_pair(newRow, newCol));	// enqueue.
+					maps[newRow][newCol] = -1;			// Mark this location is visited.
+					dist[newRow][newCol] = dist[row][col] + 1;	// Update dist array.
+				}
+			}
+		}
+	}
+
+	/*
+		Destination is not visited. -> return -1.
+	*/
+	if (maps[n - 1][m - 1] != -1)
+		return -1;
+	else {
+		int shortest = dist[n - 1][m - 1] + 1;
+		return shortest;
+	}
 }

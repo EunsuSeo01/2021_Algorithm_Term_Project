@@ -1,17 +1,20 @@
 BFS(maps)
-	x[i] <- EWSN (East/West/South/North of x)
-	y[i] <- EWSN
+	row[i] <- EWSN (East/West/South/North of row)
+	col[i] <- EWSN
 	dist <- 0.
 	queue Q.
-	enqueue initial location (x,y) pair.
+	enqueue initial location (row, col) pair.
 	WHILE Q is not empty
 		dequeue front.
 		FOR i <- 0 to 4 THEN,
-			set location(x[i],y[i])
+			set location(row[i], col[i])
 			IF the location is in the map AND can go there(= value is 1)
 			AND is not visited yet THEN,
-				enqueue the location(x,y) pair.
+				enqueue the now location pair.
 				Mark ¡°The location is visited¡±.
-				dist at this location++.
-	shortest way <- dist at location(n-1,m-1) + 1.
-	return shortest way.
+				Update dist from (0,0) to this location.
+	IF dist at location(n-1,m-1) is not visited THEN,
+		return -1. (= No way to destination)
+	ELSE
+		shortest way <- dist at location(n-1,m-1) + 1.
+		return shortest way.

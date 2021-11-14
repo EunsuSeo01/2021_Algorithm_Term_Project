@@ -26,5 +26,11 @@
     <Text Include="case2.txt">
       <Filter>소스 파일</Filter>
     </Text>
+    <Text Include="pseudoCode.txt">
+      <Filter>소스 파일</Filter>
+    </Text>
+    <Text Include="case3.txt">
+      <Filter>소스 파일</Filter>
+    </Text>
   </ItemGroup>
 </Project>

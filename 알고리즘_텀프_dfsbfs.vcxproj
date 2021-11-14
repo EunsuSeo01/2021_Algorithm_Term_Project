@@ -144,6 +144,8 @@
   <ItemGroup>
     <Text Include="case1.txt" />
     <Text Include="case2.txt" />
+    <Text Include="pseudoCode.txt" />
+    <Text Include="case3.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
