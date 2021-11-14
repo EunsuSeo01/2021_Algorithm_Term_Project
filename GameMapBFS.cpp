@@ -18,14 +18,53 @@
  n과 m은 서로 같을 수도, 다를 수도 있지만, n과 m이 모두 1인 경우는 입력으로 주어지지 않는다.
  처음에 캐릭터는 게임 맵의 좌측 상단인 (0, 0)에 위치, 상대방 진영은 게임 맵의 우측 하단인 (n-1, m-1)에 위치한다.
 */
+#define _CRT_SECURE_NO_WARNINGS 
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <queue>
 #define MAX 101
+int n = 0, m = 0;
 
 int BFS(int** maps);
 
 int main() {
+	/*
+		I will read a test case through reading a text file.
+		Step 1. Read a input file.
+	*/
+	char inputFileName[30] = {};
+	printf("Enter a input file name: ");
+	scanf("%s", &inputFileName);
+
+	FILE* inputFile = fopen(inputFileName, "r");
+	if (inputFile == NULL) {
+		printf("%s file not exist.\n", inputFileName);
+		exit(0);
+	}
+
+	/*
+		Construct a map.
+	*/
+	fscanf(inputFile, "%d %d", &n, &m);
+
+	int** maps = (int**)malloc(sizeof(int*) * n);
+	for (int i = 0; i < n; i++) {
+		maps[i] = (int*)malloc(sizeof(int) * m);
+	}
+
+	/*
+		Fill a map with resourses.
+	*/
+	printf("--------------------------------------\n[MAP]\n");
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			fscanf(inputFile, "%d", &maps[i][j]);
+			printf("%d ", maps[i][j]);
+		}
+		printf("\n");
+	}
+	printf("--------------------------------------\n\n");
 
 	return 0;
 }
