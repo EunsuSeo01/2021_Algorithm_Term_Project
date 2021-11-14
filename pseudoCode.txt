@@ -11,7 +11,7 @@ BFS(maps)
 			IF the location is in the map AND can go there(= value is 1)
 			AND is not visited yet THEN,
 				enqueue the now location pair.
-				Mark ¡°The location is visited¡±.
+				Mark the location is visited.
 				Update dist from (0,0) to this location.
 	IF dist at location(n-1,m-1) is not visited THEN,
 		return -1. (= No way to destination)
