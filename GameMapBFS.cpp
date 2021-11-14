@@ -14,7 +14,7 @@
 
  <제한사항>
  maps는 0과 1로만 이루어진 n x m 크기의 2차원 배열. (1 <= n,m <= 100)
- 0은 벽이 있는 자리, 1은 벽이 없는 자리.
+ 0은 벽이 있는 자리, 1은 벽이 없는 자리. (그 자리에 1이 있어야 갈 수 있다)
  n과 m은 서로 같을 수도, 다를 수도 있지만, n과 m이 모두 1인 경우는 입력으로 주어지지 않는다.
  처음에 캐릭터는 게임 맵의 좌측 상단인 (0, 0)에 위치, 상대방 진영은 게임 맵의 우측 하단인 (n-1, m-1)에 위치한다.
 */
@@ -24,9 +24,14 @@
 #include <stdlib.h>
 #include <queue>
 #define MAX 101
+using namespace std;
+
 int n = 0, m = 0;
 
-int BFS(int** maps);
+int BFS(int** maps) {
+	queue<pair<int, int> > q;
+
+}
 
 int main() {
 	/*
@@ -65,6 +70,12 @@ int main() {
 		printf("\n");
 	}
 	printf("--------------------------------------\n\n");
+
+
+	/*
+		Output format.
+	*/
+	printf("Game Map Shortest Way : %d\n", BFS(maps));
 
 	return 0;
 }
