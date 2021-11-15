@@ -18,6 +18,9 @@
     <ClCompile Include="GameMapBFS.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="GameMapDFS.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="case1.txt">
@@ -30,6 +33,9 @@
       <Filter>소스 파일</Filter>
     </Text>
     <Text Include="case3.txt">
+      <Filter>소스 파일</Filter>
+    </Text>
+    <Text Include="case4.txt">
       <Filter>소스 파일</Filter>
     </Text>
   </ItemGroup>
